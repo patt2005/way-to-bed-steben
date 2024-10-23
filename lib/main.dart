@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:way_to_bed_steben/splash.screen.dart';
+import 'package:provider/provider.dart';
+import 'package:way_to_bed_steben/pages/splash_screen.dart';
+import 'package:way_to_bed_steben/utils/app_provider.dart';
+import 'package:way_to_bed_steben/utils/utils.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,6 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    screenSize = MediaQuery.of(context).size;
     return MaterialApp(
       title: 'Flutter Splash screen demo',
       debugShowCheckedModeBanner: false,
