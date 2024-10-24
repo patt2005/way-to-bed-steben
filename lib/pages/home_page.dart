@@ -15,6 +15,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final String data = "Hello, world";
+  final int number = 0;
 
   @override
   Widget build(BuildContext context) {

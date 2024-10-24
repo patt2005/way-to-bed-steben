@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:way_to_bed_steben/pages/home_page.dart';
+import 'package:way_to_bed_steben/pages/place.dart';
 import 'package:way_to_bed_steben/utils/utils.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _NavigationPageState extends State<NavigationPage> {
   final List<Widget> _pagesList = [
     const Homepage(),
     const Placeholder(),
-    const Placeholder(),
+    const Place(),
     const Placeholder(),
   ];
 
