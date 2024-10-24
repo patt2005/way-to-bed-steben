@@ -38,41 +38,47 @@ class _PlaceState extends State<Place> {
                   ],
                 ),
                 const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Placespielbank()),
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: size.height * 0.3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          "images/image.png",
-                        ),
-                      ),
+
+                // Imaginea principală
+                Container(
+                  width: double.infinity,
+                  height: size.height * 0.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("images/image.png"),
                     ),
                   ),
                 ),
                 const SizedBox(height: 10),
-                for (int i = 0; i < 3; i++)
-                  Container(
-                    width: double.infinity,
-                    height: size.height * 0.2,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: const DecorationImage(
-                        image: AssetImage("images/Frame 159.png"),
+
+                // Gesturile pentru a naviga
+                for (int i = 0; i < 3; i++) ...[
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Placespielbank(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: size.height * 0.2,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: const DecorationImage(
+                          image: AssetImage("images/Frame 159.png"),
+                        ),
                       ),
                     ),
                   ),
-                SizedBox(height: screenSize.height * 0.1),
+                ],
+
+                SizedBox(height: size.height * 0.1),
               ],
             ),
           ),
