@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:way_to_bed_steben/models/route_article.dart';
 import 'package:way_to_bed_steben/pages/place.spiel.bank.dart';
 import 'package:way_to_bed_steben/utils/utils.dart';
 
@@ -38,8 +39,6 @@ class _PlaceState extends State<Place> {
                   ],
                 ),
                 const SizedBox(height: 20),
-
-                // Imaginea principală
                 Container(
                   width: double.infinity,
                   height: size.height * 0.3,
@@ -52,16 +51,16 @@ class _PlaceState extends State<Place> {
                   ),
                 ),
                 const SizedBox(height: 10),
-
-                // Gesturile pentru a naviga
-                for (int i = 0; i < 3; i++) ...[
+                for (int i = 0; i < articles.length; i++) ...[
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Placespielbank(),
+                          builder: (context) => Placespielbank(
+                            article: articles[i],
+                          ),
                         ),
                       );
                     },
@@ -71,13 +70,28 @@ class _PlaceState extends State<Place> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: const DecorationImage(
-                          image: AssetImage("images/Frame 159.png"),
+                          image: AssetImage("images/frame123.jpg"),
+                          fit: BoxFit.cover,
                         ),
+                      ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            left: 10,
+                            bottom: 10,
+                            child: Text(
+                              articles[i].title,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ],
-
                 SizedBox(height: size.height * 0.1),
               ],
             ),
