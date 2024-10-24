@@ -18,6 +18,7 @@ Future<CameraPosition?> getUserLocation() async {
       permission == LocationPermission.always) {
     Position currentPosition = await Geolocator.getCurrentPosition();
     return CameraPosition(
+      zoom: 14,
       target: LatLng(currentPosition.latitude, currentPosition.longitude),
     );
   }

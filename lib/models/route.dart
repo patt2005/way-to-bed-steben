@@ -1,13 +1,16 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:way_to_bed_steben/models/route_point.dart';
 
-class Route {
+class MapRoute {
   final List<RoutePoint> routePoints;
-  String notes;
-  String imageFilePath;
+  final String notes;
+  final List<String> imageFilePaths;
+  final Set<Polyline> polylines;
 
-  Route({
+  MapRoute({
     required this.routePoints,
-    this.notes = "",
-    this.imageFilePath = "",
+    required this.notes,
+    required this.imageFilePaths,
+    required this.polylines,
   });
 }

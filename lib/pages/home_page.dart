@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:way_to_bed_steben/pages/create_route_page.dart';
+import 'package:way_to_bed_steben/utils/app_provider.dart';
+import 'package:way_to_bed_steben/utils/route_card.dart';
 import 'package:way_to_bed_steben/utils/utils.dart';
 
 class Homepage extends StatefulWidget {
@@ -11,6 +14,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final String data = "Hello, world";
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -18,24 +23,27 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(25.0),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 15),
-              Text(
-                "Hello, dear Tony!",
-                style: TextStyle(
-                  fontSize: 40,
-                  fontFamily: "Bayon",
-                  color: ktext,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Hello, dear Tony!",
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontFamily: "Bayon",
+                    color: ktext,
+                  ),
+                  textAlign: TextAlign.start,
                 ),
-                textAlign: TextAlign.start,
               ),
               const SizedBox(height: 15),
               Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                   color: kBackGround,
                   borderRadius: BorderRadius.circular(20),
@@ -61,11 +69,12 @@ class _HomepageState extends State<Homepage> {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            "Put dots on the map and explore the \n city along a predetermined route",
+                            "Put dots on the map and explore the \ncity along a predetermined route",
                             style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
-                                fontFamily: "Helvetica Neue"),
+                              fontSize: 12,
+                              color: Colors.white,
+                              fontFamily: "Helvetica Neue",
+                            ),
                           ),
                         ],
                       ),
@@ -116,24 +125,50 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               SizedBox(height: screenSize.height * 0.03),
-              const Text(
-                "Routes",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: "HelveticaNeue",
-                  fontSize: 19,
-                  fontWeight: FontWeight.w500,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Routes",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "HelveticaNeue",
+                    fontSize: 19,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-              SizedBox(height: screenSize.height * 0.01),
-              const Text(
-                "You don't have any routes yet.",
-                style: TextStyle(
-                  color: Colors.black38,
-                  fontFamily: "HelveticaNeue",
-                  fontSize: 16,
-                ),
+              SizedBox(height: screenSize.height * 0.015),
+              Consumer<AppProvider>(
+                builder: (context, value, child) {
+                  if (value.routes.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        "You don't have any routes yet.",
+                        style: TextStyle(
+                          color: Colors.black38,
+                          fontFamily: "HelveticaNeue",
+                          fontSize: 16,
+                        ),
+                      ),
+                    );
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      itemCount: value.routes.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: RouteCard(mapRoute: value.routes[index]),
+                        );
+                      },
+                    );
+                  }
+                },
               ),
+              SizedBox(height: screenSize.height * 0.1),
             ],
           ),
         ),

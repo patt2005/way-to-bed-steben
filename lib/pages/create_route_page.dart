@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:way_to_bed_steben/models/route_point.dart';
+import 'package:way_to_bed_steben/pages/create_route_info_page.dart';
 import 'package:way_to_bed_steben/utils/utils.dart';
 
 class CreateRoutePage extends StatefulWidget {
@@ -36,6 +37,9 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
   }
 
   Future<void> _drawRoute() async {
+    setState(() {
+      _polylines.clear();
+    });
     if (_routePoints.length < 2) return;
 
     try {
@@ -77,13 +81,46 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
             CupertinoDialogAction(
               isDestructiveAction: true,
               child: const Text('Delete'),
+              onPressed: () async {
+                setState(() {
+                  _routePoints.removeWhere((point) =>
+                      point.latLng ==
+                      _markers
+                          .firstWhere((e) => e.markerId.value == markerId)
+                          .position);
+                  _markers.removeWhere((e) => e.markerId.value == markerId);
+                });
+                await _drawRoute();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _confirmDoneMarker(int index) async {
+    await showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text('Confirm Mark as Done'),
+          content: const Text('Do you want to mark this point as done?'),
+          actions: [
+            CupertinoDialogAction(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              isDestructiveAction: false,
+              child: const Text('Yes'),
               onPressed: () {
                 setState(() {
-                  _markers.removeWhere((e) => e.markerId.value == markerId);
-                  _routePoints.removeWhere((point) => point.name == markerId);
-                  _drawRoute();
+                  _routePoints[index].isCompleted = true;
                 });
-                _drawRoute();
                 Navigator.of(context).pop();
               },
             ),
@@ -119,6 +156,23 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
     );
     _pointTitleController.clear();
     await _drawRoute();
+    await showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text('Success'),
+          content: const Text('Route point added successfully!'),
+          actions: [
+            CupertinoDialogAction(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
     setState(() {});
   }
 
@@ -134,6 +188,7 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarBrightness: Brightness.light,
         ),
@@ -239,7 +294,7 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
                               child: TextField(
                                 controller: _pointTitleController,
                                 decoration: InputDecoration(
-                                  hintText: "Name of route",
+                                  hintText: "Name of point",
                                   hintStyle: const TextStyle(
                                     color: Colors.grey,
                                     fontSize: 16,
@@ -265,37 +320,105 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
                                 ),
                               ),
                             ),
-                          Expanded(
-                            child: ListView.separated(
-                              padding: EdgeInsets.zero,
-                              itemCount: _routePoints.length,
-                              separatorBuilder: (_, __) => const Divider(),
-                              itemBuilder: (context, index) {
-                                final point = _routePoints[index];
-                                return ListTile(
-                                  leading: const Icon(
-                                    CupertinoIcons.placemark,
-                                    color: Colors.blue,
+                          _routePoints.isEmpty
+                              ? const Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "You haven't added any routes so far.",
+                                        style: TextStyle(
+                                          color: Colors.black38,
+                                          fontFamily: "SFPro",
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  title: Text(
-                                    point.name,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                )
+                              : Expanded(
+                                  child: ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    itemCount: _routePoints.length,
+                                    separatorBuilder: (_, __) =>
+                                        const Divider(),
+                                    itemBuilder: (context, index) {
+                                      final point = _routePoints[index];
+                                      return ListTile(
+                                        leading: const Icon(
+                                          CupertinoIcons.placemark,
+                                          color: Colors.blue,
+                                        ),
+                                        trailing: GestureDetector(
+                                          onTap: () {
+                                            if (!point.isCompleted) {
+                                              _confirmDoneMarker(index);
+                                            }
+                                          },
+                                          child: Container(
+                                            width: 24,
+                                            height: 24,
+                                            decoration: BoxDecoration(
+                                              color: point.isCompleted
+                                                  ? Colors.green
+                                                  : Colors.grey,
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                        ),
+                                        title: Text(
+                                          point.name,
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
-                            ),
-                          ),
+                                ),
                           Container(
                             margin: EdgeInsets.symmetric(
                                 horizontal: screenSize.width * 0.13),
                             child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  _isCreatingPoint = !_isCreatingPoint;
-                                });
+                              onPressed: () async {
+                                if (_routePoints.length < 2 &&
+                                    _isCreatingPoint) {
+                                  await showCupertinoDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return CupertinoAlertDialog(
+                                        title: const Text(
+                                            'Insufficient Route Points'),
+                                        content: const Text(
+                                            'Please add at least two points on the map to create a valid route.'),
+                                        actions: [
+                                          CupertinoDialogAction(
+                                            child: const Text('OK'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  return;
+                                }
+                                if (_isCreatingPoint &&
+                                    _routePoints.length >= 2) {
+                                  await Navigator.of(context).push(
+                                    CupertinoPageRoute(
+                                      builder: (context) => CreateRouteInfoPage(
+                                        route: _routePoints,
+                                        polylines: _polylines,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  setState(() {
+                                    _isCreatingPoint = true;
+                                  });
+                                }
                               },
                               style: ButtonStyle(
                                 padding: const WidgetStatePropertyAll(

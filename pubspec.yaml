@@ -39,6 +39,8 @@ dependencies:
   provider: ^6.1.2
   google_maps_flutter: ^2.9.0
   dio: ^5.7.0
+  image_picker: ^1.1.2
+  path_provider: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +86,12 @@ flutter:
     - family: HelveticaNeue
       fonts:
         - asset: fonts/HelveticaNeueMedium.otf
+    - family: SFPro
+      fonts:
+        - asset: fonts/sfpro.otf
+    - family: Manrope
+      fonts:
+        - asset: fonts/Manrope-Regular.ttf
 
   #         style: italic
   #   - family: Trajan Pro

@@ -4,7 +4,7 @@ import 'package:way_to_bed_steben/models/route_point.dart';
 
 class OpenRouteApi {
   static const String openRouteServiceToken =
-      "5b3ce3597851110001cf624850e88dea4c9648859b5d32cf00f2f621";
+      "5b3ce3597851110001cf624820cabfa7b863436d8e77699410fbf3ba";
 
   final Dio _dio = Dio();
 
