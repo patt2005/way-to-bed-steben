@@ -35,20 +35,26 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
     _getUserLocation();
   }
 
-  void _drawRoute() {
+  Future<void> _drawRoute() async {
     if (_routePoints.length < 2) return;
 
-    setState(() {
-      _polylines.clear();
-      _polylines.add(
-        Polyline(
-          polylineId: const PolylineId('route_path'),
-          points: _routePoints.map((point) => point.latLng).toList(),
-          color: Colors.black,
-          width: 5,
-        ),
-      );
-    });
+    try {
+      final geometryString = await openROuteApi.getGeometryString(_routePoints);
+      final polylinePoints = decodePolyline(geometryString);
+      setState(() {
+        _polylines.clear();
+        _polylines.add(
+          Polyline(
+            polylineId: const PolylineId('route_path'),
+            points: polylinePoints,
+            color: Colors.black,
+            width: 5,
+          ),
+        );
+      });
+    } catch (e) {
+      debugPrint('Error fetching route: $e');
+    }
   }
 
   void _showDeleteConfirmationDialog(String markerId) {
@@ -87,33 +93,33 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
     );
   }
 
-  void _addMarker(LatLng position) {
+  Future<void> _addMarker(LatLng position) async {
     final String markerId = _markers.length.toString();
-    setState(() {
-      _markers.add(
-        Marker(
-          onTap: () {
-            setState(() {
-              _showDeleteConfirmationDialog(markerId);
-            });
-          },
-          markerId: MarkerId(markerId),
-          position: position,
-          infoWindow: InfoWindow(
-            title: _pointTitleController.text,
-          ),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+    _markers.add(
+      Marker(
+        onTap: () {
+          setState(() {
+            _showDeleteConfirmationDialog(markerId);
+          });
+        },
+        markerId: MarkerId(markerId),
+        position: position,
+        infoWindow: InfoWindow(
+          title: _pointTitleController.text,
         ),
-      );
-      _routePoints.add(
-        RoutePoint(
-            latLng: position,
-            name: _pointTitleController.text,
-            isCompleted: false),
-      );
-      _pointTitleController.clear();
-      _drawRoute();
-    });
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+      ),
+    );
+    _routePoints.add(
+      RoutePoint(
+        latLng: position,
+        name: _pointTitleController.text,
+        isCompleted: false,
+      ),
+    );
+    _pointTitleController.clear();
+    await _drawRoute();
+    setState(() {});
   }
 
   void _getUserLocation() async {
@@ -165,10 +171,10 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
                       polylines: _polylines,
                       myLocationEnabled: true,
                       markers: _markers,
-                      onTap: (argument) {
+                      onTap: (argument) async {
                         if (_isCreatingPoint &&
                             _pointTitleController.text.isNotEmpty) {
-                          _addMarker(argument);
+                          await _addMarker(argument);
                         } else {
                           showCupertinoDialog(
                             context: context,
