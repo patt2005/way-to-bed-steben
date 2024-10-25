@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:way_to_bed_steben/models/route_article.dart';
 import 'package:way_to_bed_steben/pages/place.spiel.bank.dart';
-import 'package:way_to_bed_steben/utils/utils.dart';
 
 class Place extends StatefulWidget {
   const Place({super.key});
