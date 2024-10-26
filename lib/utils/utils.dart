@@ -7,7 +7,10 @@ Color kBackGround = const Color(0xFF4848FF);
 Color kbuton = const Color(0xffFFD700);
 Color ktext = const Color(0xff000000);
 Color ktext2 = const Color(0xff111112);
-
+Color kcontainer = const Color(0xff19191A);
+Color kcontainer1 = const Color(0xff282828);
+Color ktext3 = const Color(0xff9A9A9A);
+Color kcontainer10 = const Color(0xffE8E8E8);
 late Size screenSize;
 
 final OpenRouteApi openROuteApi = OpenRouteApi();
