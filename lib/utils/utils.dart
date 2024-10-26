@@ -55,3 +55,7 @@ List<LatLng> decodePolyline(String encoded) {
   }
   return polyline;
 }
+
+DateTime normalizeDate(DateTime date) {
+  return DateTime(date.year, date.month, date.day);
+}

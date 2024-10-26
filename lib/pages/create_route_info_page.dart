@@ -58,7 +58,7 @@ class _CreateRouteInfoPageState extends State<CreateRouteInfoPage> {
                 );
                 final provider =
                     Provider.of<AppProvider>(context, listen: false);
-                provider.addMapRoute(mapRoute);
+                provider.addRoute(mapRoute);
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               } else {

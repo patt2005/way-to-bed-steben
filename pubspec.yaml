@@ -41,6 +41,7 @@ dependencies:
   dio: ^5.7.0
   image_picker: ^1.1.2
   path_provider: ^2.1.4
+  syncfusion_flutter_datepicker: ^27.1.56
 
 dev_dependencies:
   flutter_test:

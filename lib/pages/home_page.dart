@@ -141,7 +141,7 @@ class _HomepageState extends State<Homepage> {
               SizedBox(height: screenSize.height * 0.015),
               Consumer<AppProvider>(
                 builder: (context, value, child) {
-                  if (value.routes.isEmpty) {
+                  if (value.mapRoutesList.isEmpty) {
                     return const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -158,11 +158,13 @@ class _HomepageState extends State<Homepage> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
-                      itemCount: value.routes.length,
+                      itemCount: value.mapRoutesList.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: RouteCard(mapRoute: value.routes[index]),
+                          child: RouteCard(
+                            mapRoute: value.mapRoutesList[index],
+                          ),
                         );
                       },
                     );
