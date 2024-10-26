@@ -6,10 +6,12 @@ class RouteEvent {
   final List<MapRoute> routes;
   final Color activityColor;
   String notes = "";
+  final String userId;
 
   RouteEvent({
     required this.date,
     required this.routes,
     required this.activityColor,
+    required this.userId,
   });
 }

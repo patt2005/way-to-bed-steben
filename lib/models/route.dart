@@ -6,11 +6,13 @@ class MapRoute {
   final String notes;
   final List<String> imageFilePaths;
   final Set<Polyline> polylines;
+  final String userId;
 
   MapRoute({
     required this.routePoints,
     required this.notes,
     required this.imageFilePaths,
     required this.polylines,
+    required this.userId,
   });
 }

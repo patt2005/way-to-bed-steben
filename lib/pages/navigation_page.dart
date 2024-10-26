@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:way_to_bed_steben/pages/calendar_page.dart';
 import 'package:way_to_bed_steben/pages/home_page.dart';
 import 'package:way_to_bed_steben/pages/place.dart';
-import 'package:way_to_bed_steben/pages/profile.dart';
 import 'package:way_to_bed_steben/utils/utils.dart';
 import 'package:way_to_bed_steben/pages/profile.fill.dart';
 

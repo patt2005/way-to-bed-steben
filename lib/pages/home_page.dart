@@ -30,16 +30,20 @@ class _HomepageState extends State<Homepage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  "Hello, dear Tony!",
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontFamily: "Bayon",
-                    color: ktext,
+              Consumer<AppProvider>(
+                builder: (context, value, child) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    value.currentUser == null
+                        ? "Hello, dear user!"
+                        : "Hello, dear ${value.currentUser!.name}!",
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontFamily: "Bayon",
+                      color: ktext,
+                    ),
+                    textAlign: TextAlign.start,
                   ),
-                  textAlign: TextAlign.start,
                 ),
               ),
               const SizedBox(height: 15),
@@ -87,11 +91,35 @@ class _HomepageState extends State<Homepage> {
                             horizontal: 15, vertical: 15),
                         child: ElevatedButton(
                           onPressed: () async {
-                            await Navigator.of(context).push(
-                              CupertinoPageRoute(
-                                builder: (context) => const CreateRoutePage(),
-                              ),
-                            );
+                            final provider = Provider.of<AppProvider>(context,
+                                listen: false);
+                            if (provider.currentUser != null) {
+                              await Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                  builder: (context) => const CreateRoutePage(),
+                                ),
+                              );
+                            } else {
+                              await showCupertinoDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return CupertinoAlertDialog(
+                                    title: const Text('Create a Profile'),
+                                    content: const Text(
+                                      'Please create a profile in the profile section before adding a new route.',
+                                    ),
+                                    actions: [
+                                      CupertinoDialogAction(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
                           },
                           style: ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(kbuton),
@@ -141,7 +169,7 @@ class _HomepageState extends State<Homepage> {
               SizedBox(height: screenSize.height * 0.015),
               Consumer<AppProvider>(
                 builder: (context, value, child) {
-                  if (value.mapRoutesList.isEmpty) {
+                  if (value.userRoutes.isEmpty) {
                     return const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -158,12 +186,12 @@ class _HomepageState extends State<Homepage> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
-                      itemCount: value.mapRoutesList.length,
+                      itemCount: value.userRoutes.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: RouteCard(
-                            mapRoute: value.mapRoutesList[index],
+                            mapRoute: value.userRoutes[index],
                           ),
                         );
                       },

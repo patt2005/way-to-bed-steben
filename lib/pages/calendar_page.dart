@@ -23,7 +23,7 @@ class _CustomCalendarPageState extends State<CustomCalendarPage> {
     final provider = Provider.of<AppProvider>(context, listen: false);
     final eventsForDate = provider.getRoutesForDate(pickedDate);
 
-    if (eventsForDate.isEmpty) {
+    if (eventsForDate.isEmpty && provider.userRoutes.isNotEmpty) {
       _showEventModal(context, pickedDate);
     } else {
       setState(() {
@@ -92,7 +92,7 @@ class _CustomCalendarPageState extends State<CustomCalendarPage> {
         decoration: const InputDecoration(
           border: InputBorder.none,
         ),
-        items: provider.mapRoutesList
+        items: provider.userRoutes
             .map(
               (mapRoute) => DropdownMenuItem(
                 value: mapRoute,
@@ -170,6 +170,7 @@ class _CustomCalendarPageState extends State<CustomCalendarPage> {
               date: pickedDate,
               routes: [_selectedMapRoute!],
               activityColor: activityColor,
+              userId: provider.currentUser!.name,
             );
 
             provider.addEvent(newEvent);
@@ -222,8 +223,9 @@ class _CustomCalendarPageState extends State<CustomCalendarPage> {
         builder: (context, value, child) {
           RouteEvent? selectedEvent;
           if (_pickedDate != null) {
-            selectedEvent =
-                value.events.firstWhere((e) => e.date == _pickedDate);
+            var foundEvents =
+                value.userEvents.where((e) => e.date == _pickedDate);
+            selectedEvent = foundEvents.isEmpty ? null : foundEvents.first;
           }
 
           return Padding(
@@ -235,8 +237,7 @@ class _CustomCalendarPageState extends State<CustomCalendarPage> {
                   child: SfDateRangePicker(
                     backgroundColor: Colors.white,
                     view: DateRangePickerView.month,
-                    selectionColor: Colors
-                        .transparent, // Transparent to rely on border for selection
+                    selectionColor: Colors.transparent,
                     todayHighlightColor: Colors.purple,
                     onSelectionChanged: (dateRangePickerSelectionChangedArgs) {
                       setState(() {
@@ -245,7 +246,7 @@ class _CustomCalendarPageState extends State<CustomCalendarPage> {
                       _tryShowEventModal(context, _pickedDate!);
                     },
                     cellBuilder: (context, cellDetails) {
-                      final eventsForDate = value.events
+                      final eventsForDate = value.userEvents
                           .where((e) =>
                               normalizeDate(e.date) ==
                               normalizeDate(cellDetails.date))

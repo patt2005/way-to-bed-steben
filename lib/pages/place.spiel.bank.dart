@@ -14,6 +14,7 @@ class _PlacespielbankState extends State<Placespielbank> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -30,7 +31,7 @@ class _PlacespielbankState extends State<Placespielbank> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               Text(
                 widget.article.title,

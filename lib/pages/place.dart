@@ -40,7 +40,7 @@ class _PlaceState extends State<Place> {
                 const SizedBox(height: 20),
                 Container(
                   width: double.infinity,
-                  height: size.height * 0.3,
+                  height: size.height * 0.2,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: const DecorationImage(

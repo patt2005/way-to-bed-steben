@@ -9,33 +9,41 @@ List<RouteArticle> articles = [
   RouteArticle(
       title: "Spielbank Bad Steben",
       content:
-          "Alexander von Humboldt, unul dintre cei mai faimoși rezidenți ai orașului Bad Steben, ar fi fost probabil întristat de faptul că, în perioada sa de rezidență în această stațiune balneară (între 1792 și 1795), nu exista încă un cazinou. Marele om de știință ar fi putut fi atât de fascinat de lumea impresionantă a divertismentului, încât poate și-ar fi abandonat expedițiile științifice.\n\n"
-          "Astăzi, vizitatorii cazinoului din Bad Steben se pot bucura de o atmosferă stilată și spațioasă, experimentând emoțiile intense ale meselor de ruletă, poker sau blackjack și având la dispoziție o selecție largă de slot machines. Chiar și cele mai mici pariuri pot aduce satisfacții neașteptate, iar sloturile moderne oferă șansa de a-ți încerca norocul în condiții de primă clasă.\n\n"
-          "Pe lângă jocurile de noroc, cazinoul organizează și evenimente culturale. Pe scena CasinoLIVE au loc spectacole colorate, precum cabareturi și concerte, creând o atmosferă de neuitat și ridicând moralul vizitatorilor. Combinația dintre câștiguri și dans nu aduce doar adrenalină, ci și hormoni reali ai fericirii.\n\n"
-          "Gurmanzii vor descoperi aici adevărate delicii culinare: bucătarii cazinoului oferă preparate rafinate, atât din bucătăria locală, cât și din cea internațională, care pot cuceri gusturile oricărui cunoscător.\n\n"
-          "Cazinoul din Bad Steben te invită să îți petreci timpul într-un loc magnific, bucurându-te de jocuri captivante, capodopere gastronomice și momente de fericire autentică.\n"),
+          """Alexander von Humboldt, one of the most famous residents of Bad Steben, would have probably been saddened that during his time (1792–1795) the spa town didn’t yet have a casino. The great scientist might have been so fascinated by the impressive world of entertainment that he could have abandoned his scientific expeditions.
+Today, visitors to the Bad Steben casino can enjoy an elegant and spacious atmosphere, with thrilling roulette, poker, and blackjack tables, along with a variety of slot machines. Even small bets can bring unexpected satisfaction, and modern slots offer first-class conditions to test one’s luck.
+
+Apart from gambling, the casino hosts cultural events, such as colorful cabaret shows and concerts, lifting visitors’ spirits. The combination of winnings and dancing not only provides adrenaline but also real happiness hormones.
+Food enthusiasts will find culinary delights, with chefs offering exquisite local and international dishes to please any connoisseur’s palate. The casino invites visitors to enjoy captivating games, gastronomic masterpieces, and moments of true joy.
+"""),
   RouteArticle(
       title: "Berlin Television Tower",
       content:
-          "Turnul Televiziunii din Berlin, construit în 1969, este una dintre cele mai emblematice atracții turistice ale orașului și un simbol al modernității orașului reunificat. Cu o înălțime de 368 de metri, oferă o panoramă uimitoare asupra întregului oraș, fiind locul perfect pentru a admira peisajul urban al Berlinului. Vizitatorii pot urca la platforma de observație, situată la 203 metri, pentru a vedea principalele obiective din Berlin, precum Poarta Brandenburg, Insula Muzeelor și Catedrala din Berlin.\n\n"
-          "Un alt punct de atracție al turnului este restaurantul rotativ, situat chiar sub platforma de observație. În timp ce savurezi un prânz sau o cină rafinată, te poți bucura de o rotație completă a restaurantului în jurul axei sale, oferindu-ți o vedere de 360 de grade a orașului într-o atmosferă relaxantă. Turnul Televiziunii este nu doar o destinație turistică, ci și un simbol al ingineriei moderne și al viziunii de progres a Berlinului.\n\n"
-          "Istoria sa este strâns legată de perioada Războiului Rece, fiind construit de autoritățile est-germane ca o demonstrație a puterii și modernității regimului socialist. Astăzi, Turnul Televiziunii rămâne unul dintre cele mai vizitate obiective turistice din Germania și un loc de întâlnire între trecut și prezent.\n"),
+          """Built in 1969, the Berlin Television Tower is one of the city’s most iconic attractions and a symbol of modernity in reunified Berlin. Standing at 368 meters, it offers stunning views of the city, allowing visitors to admire landmarks like Brandenburg Gate, Museum Island, and Berlin Cathedral from the observation deck at 203 meters.
+
+The tower also features a rotating restaurant where guests can enjoy meals while experiencing a 360-degree panoramic view of the city in a relaxing atmosphere. Beyond being a tourist destination, the tower symbolizes modern engineering and Berlin’s progressive vision.
+Its history is tied to the Cold War, as it was built by East German authorities to demonstrate the power and modernity of the socialist regime. Today, it remains one of Germany’s most visited tourist sites, bridging the past and the present."""),
   RouteArticle(
       title: "Brandenburg Gate",
       content:
-          "Poarta Brandenburg este unul dintre cele mai recunoscute monumente din Berlin și din întreaga Germanie. Construită în stil neoclasic la sfârșitul secolului al XVIII-lea, aceasta a servit inițial ca simbol al păcii și al puterii Prusiei. Amplasată la marginea faimosului bulevard Unter den Linden, Poarta Brandenburg a fost martora unor evenimente istorice semnificative, de la intrarea lui Napoleon în Berlin, la Războiul Rece și căderea Zidului Berlinului.\n\n"
-          "După construirea Zidului Berlinului în 1961, Poarta a devenit un simbol al diviziunii orașului, fiind inaccesibilă atât pentru locuitorii din est, cât și pentru cei din vest. Însă, în 1989, când Zidul a căzut, Poarta Brandenburg a redevenit simbolul unificării și păcii, fiind un loc unde oamenii s-au reunit pentru a sărbători acest moment istoric.\n\n"
-          "Astăzi, Poarta Brandenburg este nu doar o atracție turistică importantă, ci și un simbol al unității și rezistenței. În fiecare an, milioane de turiști vin să o vadă și să participe la diverse evenimente culturale organizate în jurul său, fiind un punct central în viața culturală și istorică a Berlinului.\n"),
+          """The Brandenburg Gate is one of the most recognized monuments in Berlin and all of Germany. Built in a neoclassical style in the late 18th century, it initially symbolized peace and Prussian power. Located at the edge of the famous Unter den Linden boulevard, it has witnessed significant historical events, from Napoleon’s entry into Berlin to the Cold War and the fall of the Berlin Wall.
+
+After the construction of the Berlin Wall in 1961, the gate became a symbol of the city’s division, inaccessible to residents of both East and West Berlin. However, with the Wall’s fall in 1989, it transformed into a symbol of unity and peace, attracting people to celebrate the historic moment.
+Today, Brandenburg Gate remains an essential cultural and historical landmark in Berlin, hosting numerous cultural events and drawing millions of tourists every year."""),
   RouteArticle(
       title: "Museum Island",
       content:
-          "Insula Muzeelor din Berlin este un complex muzeal unic în lume, situat pe o insulă pe râul Spree. Acest complex găzduiește cinci dintre cele mai renumite muzee din Germania: Muzeul Pergamon, Altes Museum, Neues Museum, Alte Nationalgalerie și Bode Museum. Împreună, acestea acoperă o gamă largă de artefacte, de la antichități grecești și romane până la artă egipteană și germană din secolul al XIX-lea.\n\n"
-          "Pe Insula Muzeelor, vizitatorii pot explora comori neprețuite precum Altarul Pergamon, celebra Bustul Nefertiti și multe alte capodopere ale artei și istoriei umanității. Complexul este inclus în Patrimoniul Mondial UNESCO și este considerat unul dintre cele mai importante centre culturale din Europa.\n\n"
-          "Fiecare muzeu oferă o perspectivă unică asupra istoriei și civilizațiilor, făcând Insula Muzeelor o destinație obligatorie pentru oricine este interesat de artă și istorie. Restaurările recente au modernizat clădirile și au creat noi spații expoziționale, asigurând că acest complex cultural va rămâne un punct de atracție de prim rang pentru multe generații viitoare.\n"),
+          """Museum Island in Berlin is a unique museum complex located on an island in the Spree River. It houses five of Germany’s most renowned museums: the Pergamon Museum, Altes Museum, Neues Museum, Alte Nationalgalerie, and Bode Museum. Together, they offer a wide range of artifacts, from Greek and Roman antiquities to 19th-century German and Egyptian art.
+
+Visitors can explore treasures such as the Pergamon Altar and the famous bust of Nefertiti. The complex is a UNESCO World Heritage site and considered one of Europe’s most important cultural centers. Each museum provides a unique perspective on history and civilizations, making Museum Island a must-visit destination for anyone interested in art and history.
+
+Recent restorations have modernized the buildings and created new exhibition spaces, ensuring the complex remains a premier cultural attraction for future generations."""),
   RouteArticle(
       title: "Potsdamer Platz",
       content:
-          "Potsdamer Platz este unul dintre cele mai vibrante și moderne cartiere din Berlin, un simbol al renașterii orașului după căderea Zidului Berlinului. Acest loc, care a fost complet distrus în timpul celui de-Al Doilea Război Mondial și a rămas un teren viran în perioada Războiului Rece, a renăscut spectaculos după reunificare.\n\n"
-          "În anii 1990, Potsdamer Platz a devenit un vast șantier de construcții, transformându-se într-un hub al modernității, cu zgârie-nori futuristici, centre comerciale, cinematografe și hoteluri de lux. Clădiri emblematice precum Sony Center sau Daimler City au devenit puncte de referință în arhitectura contemporană, atrăgând atât localnici, cât și turiști din întreaga lume.\n\n"
-          "Astăzi, Potsdamer Platz este un loc de întâlnire pentru locuitorii din Berlin, unde se desfășoară evenimente culturale majore, inclusiv Berlinale, festivalul internațional de film. Atmosfera sa vibrantă, plină de restaurante, cafenele și teatre, îl face un loc ideal pentru a experimenta spiritul dinamic și cosmopolit al Berlinului modern.\n"),
+          """Potsdamer Platz is one of Berlin’s most vibrant and modern neighborhoods, symbolizing the city’s rebirth after the fall of the Berlin Wall. Completely destroyed during World War II and left desolate during the Cold War, the area was spectacularly redeveloped after reunification.
+
+In the 1990s, Potsdamer Platz became a vast construction site, transforming into a hub of modernity with futuristic skyscrapers, shopping centers, cinemas, and luxury hotels. Iconic buildings such as the Sony Center and Daimler City have become landmarks in contemporary architecture, attracting locals and tourists alike.
+
+Today, Potsdamer Platz hosts major cultural events, including the Berlinale International Film Festival. With its dynamic atmosphere, filled with restaurants, cafes, and theaters, it perfectly captures Berlin’s modern, cosmopolitan spirit.
+"""),
 ];

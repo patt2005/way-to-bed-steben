@@ -140,6 +140,9 @@ class RouteCard extends StatelessWidget {
                   ],
                 ),
                 ElevatedButton(
+                  style: const ButtonStyle(
+                    elevation: WidgetStatePropertyAll(0),
+                  ),
                   onPressed: () async {
                     await Navigator.of(context).push(
                       CupertinoPageRoute(
