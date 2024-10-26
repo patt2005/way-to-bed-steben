@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:way_to_bed_steben/models/user_profile.dart';
 import 'package:way_to_bed_steben/utils/app_provider.dart';
 import 'package:way_to_bed_steben/utils/utils.dart';
@@ -199,28 +200,46 @@ class _ProfileState extends State<Profile> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "Terms of Use",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: ktext3,
-                                    fontFamily: "Helvetica Neue",
+                                GestureDetector(
+                                  onTap: () async {
+                                    await launchUrl(
+                                        Uri.parse("https://google.com/"));
+                                  },
+                                  child: Text(
+                                    "Terms of Use",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: ktext3,
+                                      fontFamily: "Helvetica Neue",
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  "Developer Website",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: ktext3,
-                                    fontFamily: "Helvetica Neue",
+                                GestureDetector(
+                                  onTap: () async {
+                                    await launchUrl(
+                                        Uri.parse("https://google.com/"));
+                                  },
+                                  child: Text(
+                                    "Developer Website",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: ktext3,
+                                      fontFamily: "Helvetica Neue",
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  "Privacy Policy",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: ktext3,
-                                    fontFamily: "Helvetica Neue",
+                                GestureDetector(
+                                  onTap: () async {
+                                    await launchUrl(
+                                        Uri.parse("https://google.com/"));
+                                  },
+                                  child: Text(
+                                    "Privacy Policy",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: ktext3,
+                                      fontFamily: "Helvetica Neue",
+                                    ),
                                   ),
                                 ),
                               ],

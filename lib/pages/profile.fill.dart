@@ -1,8 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:way_to_bed_steben/pages/profile.dart';
 import 'package:way_to_bed_steben/pages/profile.edit.dart';
 import 'package:way_to_bed_steben/utils/app_provider.dart';
@@ -162,28 +162,43 @@ class _ProfilefillState extends State<Profilefill> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Terms of Use",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: ktext3,
-                            fontFamily: "Helvetica Neue",
+                        GestureDetector(
+                          onTap: () async {
+                            await launchUrl(Uri.parse("https://google.com/"));
+                          },
+                          child: Text(
+                            "Terms of Use",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: ktext3,
+                              fontFamily: "Helvetica Neue",
+                            ),
                           ),
                         ),
-                        Text(
-                          "Developer Website",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: ktext3,
-                            fontFamily: "Helvetica Neue",
+                        GestureDetector(
+                          onTap: () async {
+                            await launchUrl(Uri.parse("https://google.com/"));
+                          },
+                          child: Text(
+                            "Developer Website",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: ktext3,
+                              fontFamily: "Helvetica Neue",
+                            ),
                           ),
                         ),
-                        Text(
-                          "Privacy Policy",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: ktext3,
-                            fontFamily: "Helvetica Neue",
+                        GestureDetector(
+                          onTap: () async {
+                            await launchUrl(Uri.parse("https://google.com/"));
+                          },
+                          child: Text(
+                            "Privacy Policy",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: ktext3,
+                              fontFamily: "Helvetica Neue",
+                            ),
                           ),
                         ),
                       ],
