@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:way_to_bed_steben/models/route_containers.dart';
 import 'package:way_to_bed_steben/pages/profile.fill.dart';
 import 'package:way_to_bed_steben/utils/utils.dart';
-import '../models/route_containers.dart';
-import 'route_containers.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({super.key});
+class Profileedit extends StatefulWidget {
+  const Profileedit({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<Profileedit> createState() => _ProfileeditState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileeditState extends State<Profileedit> {
+  // Declarația listei de controlere
   final List<TextEditingController> _controllers =
-      List.generate(3, (index) => TextEditingController());
+      List.generate(3, (_) => TextEditingController());
 
   @override
   void dispose() {
+    // Asigură-te că eliberezi controlerele
     for (var controller in _controllers) {
       controller.dispose();
     }
@@ -26,39 +27,72 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Row(
                 children: [
-                  Text(
-                    "Profile",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "Helvetica Neue",
-                      color: Colors.black,
+                  const Expanded(
+                    child: Text(
+                      "Profile",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontFamily: "Helvetica Neue",
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Profilefill(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "Done",
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontFamily: "Helvetica Neue",
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
-              Container(
-                width: size.width * 0.2,
-                height: size.height * 0.125,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(999),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("images/Frame 30.png"),
+              const SizedBox(height: 20),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: size.width * 0.3,
+                    height: size.width * 0.3,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage("images/image 162.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               const SizedBox(height: 20),
               Column(
@@ -129,38 +163,6 @@ class _ProfileState extends State<Profile> {
                             ],
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => (const Profilefill())),
-                      );
-                    },
-                    child: Center(
-                      child: Container(
-                        width: size.width * 0.2,
-                        height: size.height * 0.05,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: kbuton,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Save",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Helvetica Neue",
-                              color: ktext2,
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
